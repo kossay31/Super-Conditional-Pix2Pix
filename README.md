@@ -91,10 +91,6 @@ py app_gradio.py
 
 ---
 
-## 📈 Future Roadmap: Spatial Attention Integration
-The long-term development of this architecture includes moving from dense coordinate channel packing to a **Cross-Attention Mechanism** [construct-visual-analytical-aids]. This will map the numerical floats into a low-dimensional feature vector ($1 \times 64$) via a Multi-Layer Perceptron (MLP) [construct-visual-analytical-aids], then apply spatial attention inside the bottleneck layers to calculate localized pixel impact, reducing VRAM usage and improving micro-detail fidelity [construct-visual-analytical-aids].
-
-
 
 
 
