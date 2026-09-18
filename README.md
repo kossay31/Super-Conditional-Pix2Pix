@@ -68,21 +68,6 @@ pytorch-CycleGAN-and-pix2pix-master/
 └── .gitignore                   ➔ Prevents heavy training images or weights from being tracked
 ```
 
----
-
-## 🚀 Execution & Interactive GUI
-
-### 1. Local Training
-Execute the customized training pipeline targeting your local dataset directory on your PC:
-```bash
-python train.py --dataroot ./datasets/my_project_data --name Super_Conditional_Pix2Pix --model pix2pix --direction AtoB
-```
-
-### 2. Launch the Color-Grading Web UI
-Run the interactive web interface locally to upload custom images, move sliders, input float values, and watch the AI apply high-fidelity color grading instantly:
-```bash
-python app_gradio.py
-``` CSV؟
 
 
    
