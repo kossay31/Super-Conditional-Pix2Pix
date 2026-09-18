@@ -1,40 +1,43 @@
+# 🎛️ Super-Conditional Pix2Pix: Professional Chromatic Control via Skip Connections
 
-
-# 🎛️ Super-Conditional Pix2Pix: Professional Chromatic Control via Skip Connections.
+![Python](https://shields.io)
+![PyTorch](https://shields.io)
+![Framework](https://shields.io)
 
 An advanced, customized implementation of the **Pix2Pix (Conditional GAN)** architecture. This repository is re-engineered to grant the user **complete manual control over image color grading and chromatic manipulation** using precise, floating-point parameters. Instead of relying solely on visual translation, the network fuses custom color constraints natively with the image channels directly inside the **U-Net Skip Connections**, leveraging the full power of AI to synthesize professional, color-accurate transformations.
----## 🎯 Project Vision & Core Concept
+
+---
+
+## 🎯 Project Vision & Core Concept
+
 This project transforms Pix2Pix into an interactive, user-steered color-grading engine. The core mechanic relies on blending human intent with artificial intelligence:
+
 1. **User-Driven Chromatic Parameters:** The user inputs precise floating-point values to define the desired color profile and tone mapping.
-2. **Dense Tensor Integration:** The system transforms these numerical color vectors into continuous conditional matrices, matching the exact spatial dimensions of the input image (256 × 256 pixels) using strict `torch.float32` precision.3. **Neural Skip Connection Fusion:** Rather than injecting the color parameters only at the root layer, the 6 conditional channels flow deeply into the network. They undergo dynamic rescaling to stitch themselves directly inside the **Skip Connections (Skip Channels)**, empowering the Generator to reconstruct fine details while strictly obeying the user’s professional color tuning.
----## 🏗️ Neural Data Flow & Architecture
+2. **Dense Tensor Integration:** The system transforms these numerical color vectors into continuous conditional matrices, matching the exact spatial dimensions of the input image (256 × 256 pixels) using strict `torch.float32` precision.
+3. **Neural Skip Connection Fusion:** Rather than injecting the color parameters only at the root layer, the 6 conditional channels flow deeply into the network. They undergo dynamic rescaling to stitch themselves directly inside the **Skip Connections (Skip Channels)**, empowering the Generator to reconstruct fine details while strictly obeying the user’s professional color tuning.
+
+---
+
+## 🏗️ Neural Data Flow & Architecture
+
 Below is the conceptual visualization of how visual features and custom chromatic constraints seamlessly merge before entering the network pipeline:
 
+```mermaid
+graph TD
+    In[Input Matrix Tensor] --> Vis[Visual Feature Channels<br>• 3 Channels RGB Image A<br>• Spatial Resolution: 256x256]
+    In --> Chrom[Chromatic Control Channels<br>• 6 Channels Color Parameters<br>• Filled with Exact Decimals]
+    
+    Vis --> Comb[9-Channel Combined Tensor<br>Dimensions: 1, 9, 256, 256]
+    Chrom --> Comb
+    
+    Comb --> Gen[Custom Generator<br>U-Net Fused via Skip Layers]
 
-┌────────────────────────────────────────────────────────┐
-│ Input Matrix Tensor │
-└───────────────────────────┬────────────────────────────┘
-│
-┌───────────────┴───────────────┐
-▼ ▼
-┌─────────────────────────────────┐ ┌─────────────────────────────────┐
-│ Visual Feature Channels │ │ Chromatic Control Channels │
-├─────────────────────────────────┤ ├─────────────────────────────────┤
-│ • 3 Channels (RGB Image A) │ │ • 6 Channels (Color Parameters) │
-│ • Spatial Resolution: 256x256 │ │ • Filled with Exact Decimals │
-└─────────────────────────────────┘ └─────────────────────────────────┘
-│ │
-└───────────────┬───────────────┘
-▼
-┌────────────────────────────────────────────────────────┐
-│ 9-Channel Combined Tensor │
-│ (1, 9, 256, 256) │
-└───────────────────────────┬────────────────────────────┘
-▼
-┌────────────────────────────────────────────────────────┐
-│ Custom Generator (U-Net Fused via Skip Layers) │
-└────────────────────────────────────────────────────────┘
-
+    style In fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Vis fill:#e1f5fe,stroke:#0288d1,stroke-width:1px
+    style Chrom fill:#fff3e0,stroke:#f57c00,stroke-width:1px
+    style Comb fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Gen fill:#ede7f6,stroke:#5e35b1,stroke-width:2px
+```
 
 ---
 
@@ -68,9 +71,9 @@ pytorch-CycleGAN-and-pix2pix-master/
 └── .gitignore                   ➔ Prevents heavy training images or weights from being tracked
 ```
 
+---
 
 
-   
 
 
 
